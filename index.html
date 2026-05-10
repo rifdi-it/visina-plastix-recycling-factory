@@ -1,99 +1,227 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- கூகுள் தேடலுக்கான விளக்கம் -->
-    <meta name="description" content="எங்கள் தொழிற்சாலையில் பிளாஸ்டிக், உலோகம் மற்றும் மின் கழிவுகளை சிறந்த முறையில் மறுசுழற்சி செய்கிறோம். குறைந்த விலையில் கழிவுகளை அப்புறப்படுத்த எங்களைத் தொடர்பு கொள்ளுங்கள்.">
-    
-    <!-- தேடுபொறிக்கான முக்கிய சொற்கள் (Keywords) -->
-    <meta name="keywords" content="visina plastix,Visina Plastix,visina plastix narammala,மறுசுழற்சி, Recycling Factory, Plastic Recycling, Metal Recycling, Sri Lanka Recycling, Waste Management">
-    
-    <!-- உங்கள் இருப்பிடத்தை சேர்த்தால் அந்த ஊரில் தேடுபவர்களுக்கு முதலில் காட்டும் -->
-    <meta name="author" content="VISINA PLASTIX NARAMMALA">
-    
-    <title>Recycling Factory | சிறந்த மறுசுழற்சி சேவை</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <title>Visina Plastix | Smart Recycling Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { color: #333; line-height: 1.6; }
-        
-        /* Navigation */
-        nav { background: #2d5a27; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=1000');
-            background-size: cover; background-position: center;
-            height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px;
+        :root {
+            --primary: #2d5a27;
+            --secondary: #ecf3eb;
+            --accent: #f39c12;
+            --dark: #1a1a1a;
+            --white: #ffffff;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 700px; }
-        
-        /* Services Section */
-        .services { padding: 4rem 5%; background: #f4f4f4; text-align: center; }
-        .services h2 { margin-bottom: 2rem; color: #2d5a27; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .card h3 { color: #2d5a27; margin-bottom: 10px; }
-        
-        /* Contact Section */
-        .contact { padding: 4rem 5%; text-align: center; }
-        .btn { background: #2d5a27; color: white; padding: 12px 30px; border: none; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
-        .btn:hover { background: #3e7d36; }
 
-        footer { background: #222; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8f9fa; color: var(--dark); overflow-x: hidden; }
+
+        /* Navigation */
+        nav { 
+            background: var(--white); 
+            padding: 1rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .nav-links button { 
+            background: var(--primary); color: white; border: none; 
+            padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 5%;
+            background: linear-gradient(rgba(45, 90, 39, 0.9), rgba(45, 90, 39, 0.9)), 
+                        url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover; text-align: center; color: white;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+
+        /* Price Ticker */
+        .price-ticker {
+            background: var(--accent); color: var(--dark);
+            padding: 10px 0; overflow: hidden; white-space: nowrap; font-weight: bold;
+        }
+        .ticker-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* Main Dashboard Area */
+        .container { padding: 40px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card { 
+            background: white; padding: 25px; border-radius: 15px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        
+        /* Modal Login */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+            align-items: center; justify-content: center;
+        }
+        .modal-content { 
+            background: white; padding: 40px; border-radius: 15px; 
+            width: 90%; max-width: 400px; position: relative; 
+        }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; }
+        
+        input { 
+            width: 100%; padding: 12px; margin: 10px 0; 
+            border: 1px solid #ddd; border-radius: 8px; 
+        }
+
+        /* Notification Badge */
+        .notification-bell { position: relative; cursor: pointer; margin-right: 20px; font-size: 1.2rem; }
+        .badge { 
+            position: absolute; top: -5px; right: -10px; 
+            background: red; color: white; border-radius: 50%; 
+            padding: 2px 6px; font-size: 10px; 
+        }
+
+        .admin-panel { display: none; margin-top: 30px; border-top: 2px solid var(--primary); padding-top: 20px; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Recycle Pro</div>
-        <div>
-            <small>சுற்றுச்சூழலை காப்போம்!</small>
+        <div class="logo"><i class="fas fa-recycle"></i> VISINA PLASTIX</div>
+        <div style="display: flex; align-items: center;">
+            <div class="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="notif-count">2</span>
+            </div>
+            <div class="nav-links">
+                <button onclick="openModal()" id="loginBtn">Login / Staff Access</button>
+                <button onclick="logout()" id="logoutBtn" class="hidden">Logout</button>
+            </div>
         </div>
     </nav>
 
+    <div class="price-ticker">
+        <div class="ticker-content" id="priceTicker">
+            Loading Today's Prices... Plastic: Rs. 120/kg | Iron: Rs. 450/kg | Copper: Rs. 2100/kg | E-Waste: Rs. 350/kg
+        </div>
+    </div>
+
     <section class="hero">
-        <h1>பசுமையான எதிர்காலத்தை உருவாக்குவோம்</h1>
-        <p>உங்கள் தொழிற்சாலை மற்றும் வீட்டு கழிவுகளை முறையாக மறுசுழற்சி செய்து பூமியைப் பாதுகாக்க எங்களுடன் இணையுங்கள்.</p>
-        <a href="#contact" class="btn">எங்களைத் தொடர்பு கொள்ள</a>
+        <h1>Eco-Smart Recycling</h1>
+        <p>Leading Waste Management Excellence in Narammala</p>
     </section>
 
-    <section class="services">
-        <h2>எங்கள் சேவைகள்</h2>
+    <div class="container">
+        <!-- Dashboard for Everyone -->
         <div class="grid">
             <div class="card">
-                <h3>பிளாஸ்டிக் மறுசுழற்சி</h3>
-                <p>அனைத்து வகையான பிளாஸ்டிக் கழிவுகளையும் தரம் பிரித்து மறுசுழற்சி செய்கிறோம்.</p>
+                <h3><i class="fas fa-chart-line"></i> Market Trends</h3>
+                <p>Plastic prices are up 5% today. Best time to sell!</p>
             </div>
             <div class="card">
-                <h3>உலோகக் கழிவுகள்</h3>
-                <p>இரும்பு, அலுமினியம் போன்ற உலோகங்களை நவீன முறையில் உருக்கி புதிய பொருட்களாக மாற்றுகிறோம்.</p>
+                <h3><i class="fas fa-truck"></i> Request Pickup</h3>
+                <p>Schedule a waste collection for your factory or home.</p>
+                <button class="input" style="background: var(--primary); color: white; border: none; cursor: pointer;">Book Now</button>
             </div>
             <div class="card">
-                <h3>மின் கழிவுகள் (E-Waste)</h3>
-                <p>பயன்படுத்த முடியாத மின்னணு சாதனங்களை பாதுகாப்பான முறையில் கையாளுகிறோம்.</p>
+                <h3><i class="fas fa-info-circle"></i> Daily Updates</h3>
+                <div id="dailyNews">
+                    <li>Factory opens at 8:00 AM</li>
+                    <li>New Copper recycling unit active</li>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section id="contact" class="contact">
-        <h2>தொடர்புக்கு</h2>
-        <p>உங்கள் தொழிற்சாலைக் கழிவுகளை அப்புறப்படுத்த வேண்டுமா?</p>
-        <p>மின்னஞ்சல்: <strong>info@yourfactory.com</strong></p>
-        <p>தொலைபேசி: <strong>+94 XXX XXX XXX</strong></p>
-        <a href="mailto:info@yourfactory.com" class="btn">மின்னஞ்சல் அனுப்பவும்</a>
-    </section>
+        <!-- Admin / Staff Side Panel (Hidden by Default) -->
+        <div id="adminArea" class="admin-panel">
+            <h2 style="color: var(--primary); margin-bottom: 20px;">Staff Control Panel</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid var(--accent);">
+                    <h4>Update Daily Prices</h4>
+                    <input type="text" id="newPrice" placeholder="Format: Plastic: 150, Iron: 500...">
+                    <button onclick="updatePrice()" style="width:100%; background: var(--dark); color: white; padding: 10px; border-radius: 5px;">Push Update</button>
+                </div>
+                <div class="card" style="border-left: 5px solid var(--primary);">
+                    <h4>Send Mobile Notification</h4>
+                    <input type="text" id="notifMsg" placeholder="Enter message to all users...">
+                    <button onclick="sendNotif()" style="width:100%; background: var(--primary); color: white; padding: 10px; border-radius: 5px;">Broadcast</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 உங்கள் தொழிற்சாலை பெயர். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
-    </footer>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">Staff Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="handleLogin()" style="width:100%; background: var(--primary); color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Sign In</button>
+            <p style="font-size: 12px; margin-top: 15px; text-align: center; color: #666;">Staff credentials only. Public users can view prices without login.</p>
+        </div>
+    </div>
+
+    <script>
+        // UI Logic
+        function openModal() { document.getElementById('loginModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('loginModal').style.display = 'none'; }
+
+        // Login System
+        function handleLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if(user === "admin" && pass === "1234") {
+                alert("Login Successful! Admin Access Granted.");
+                document.getElementById('adminArea').style.display = 'block';
+                document.getElementById('loginBtn').classList.add('hidden');
+                document.getElementById('logoutBtn').classList.remove('hidden');
+                closeModal();
+            } else {
+                alert("Invalid Credentials");
+            }
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        // Live Price Update Logic
+        function updatePrice() {
+            const val = document.getElementById('newPrice').value;
+            if(val) {
+                document.getElementById('priceTicker').innerText = "LIVE UPDATE: " + val;
+                alert("Prices updated for all users!");
+            }
+        }
+
+        // Notification Logic
+        let count = 2;
+        function sendNotif() {
+            const msg = document.getElementById('notifMsg').value;
+            if(msg) {
+                count++;
+                document.getElementById('notif-count').innerText = count;
+                alert("Mobile notification sent: " + msg);
+                
+                // Add to daily updates
+                const list = document.getElementById('dailyNews');
+                list.innerHTML = `<li>${msg}</li>` + list.innerHTML;
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('loginModal')) closeModal();
+        }
+    </script>
 
 </body>
 </html>
