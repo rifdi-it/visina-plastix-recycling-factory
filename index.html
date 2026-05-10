@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="எங்கள் தொழிற்சாலையில் பிளாஸ்டிக், உலோகம் மற்றும் மின் கழிவுகளை சிறந்த முறையில் மறுசுழற்சி செய்கிறோம்.">
+    <title>Recycling Factory | சிறந்த மறுசுழற்சி சேவை</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { color: #333; line-height: 1.6; }
+        
+        /* Navigation */
+        nav { background: #2d5a27; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover; background-position: center;
+            height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; max-width: 700px; }
+        
+        /* Services Section */
+        .services { padding: 4rem 5%; background: #f4f4f4; text-align: center; }
+        .services h2 { margin-bottom: 2rem; color: #2d5a27; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card h3 { color: #2d5a27; margin-bottom: 10px; }
+        
+        /* Contact Section */
+        .contact { padding: 4rem 5%; text-align: center; }
+        .btn { background: #2d5a27; color: white; padding: 12px 30px; border: none; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background: #3e7d36; }
+
+        footer { background: #222; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Recycle Pro</div>
+        <div>
+            <small>சுற்றுச்சூழலை காப்போம்!</small>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>பசுமையான எதிர்காலத்தை உருவாக்குவோம்</h1>
+        <p>உங்கள் தொழிற்சாலை மற்றும் வீட்டு கழிவுகளை முறையாக மறுசுழற்சி செய்து பூமியைப் பாதுகாக்க எங்களுடன் இணையுங்கள்.</p>
+        <a href="#contact" class="btn">எங்களைத் தொடர்பு கொள்ள</a>
+    </section>
+
+    <section class="services">
+        <h2>எங்கள் சேவைகள்</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>பிளாஸ்டிக் மறுசுழற்சி</h3>
+                <p>அனைத்து வகையான பிளாஸ்டிக் கழிவுகளையும் தரம் பிரித்து மறுசுழற்சி செய்கிறோம்.</p>
+            </div>
+            <div class="card">
+                <h3>உலோகக் கழிவுகள்</h3>
+                <p>இரும்பு, அலுமினியம் போன்ற உலோகங்களை நவீன முறையில் உருக்கி புதிய பொருட்களாக மாற்றுகிறோம்.</p>
+            </div>
+            <div class="card">
+                <h3>மின் கழிவுகள் (E-Waste)</h3>
+                <p>பயன்படுத்த முடியாத மின்னணு சாதனங்களை பாதுகாப்பான முறையில் கையாளுகிறோம்.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>தொடர்புக்கு</h2>
+        <p>உங்கள் தொழிற்சாலைக் கழிவுகளை அப்புறப்படுத்த வேண்டுமா?</p>
+        <p>மின்னஞ்சல்: <strong>info@yourfactory.com</strong></p>
+        <p>தொலைபேசி: <strong>+94 XXX XXX XXX</strong></p>
+        <a href="mailto:info@yourfactory.com" class="btn">மின்னஞ்சல் அனுப்பவும்</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 உங்கள் தொழிற்சாலை பெயர். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+    </footer>
+
+</body>
+</html>
