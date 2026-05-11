@@ -138,7 +138,7 @@
 
     <!-- ADMIN ONLY: USER APPROVAL -->
     <div class="admin-section hidden" id="adminApproval">
-        <h3><i class="fas fa-users-cog"></i> Registration Approvals</h3>
+        <h3><i class="fas fa-users-cog"></i> User Management</h3>
         <table id="approvalTable">
             <thead>
                 <tr><th>User</th><th>Role</th><th>Status</th><th>Action</th></tr>
@@ -162,10 +162,9 @@
             <input type="text" id="regUser" placeholder="Full Name">
             <input type="password" id="regPass" placeholder="Password">
             <select id="regRole">
-                <option value="people_distributor">Scrap Distributor (People)</option>
-                <option value="people_buyer">Pellets Buyer (People)</option>
+                <option value="people_distributor">PP Scrap Distributor</option>
+                <option value="people_buyer">PP Pellets Buyer</option>
                 <option value="staff">Factory Staff</option>
-                <option value="admin">Administrator</option>
             </select>
             <button class="btn-auth" style="width:100%" onclick="handleRegister()">Register Request</button>
         </div>
@@ -306,24 +305,34 @@
 
     // --- ADMIN APPROVALS ---
     function renderApprovals() {
-        const pending = users.filter(u => !u.approved);
-        const html = pending.map(u => `
+        const html = users.map((u, i) => {
+            if(u.role === 'admin') return '';
+            return `
             <tr>
                 <td>${u.name}</td>
                 <td>${u.role}</td>
-                <td><span class="status-badge pending">Pending</span></td>
-                <td><button class="btn-auth" onclick="approveUser('${u.name}')">Approve</button></td>
-            </tr>
-        `).join('');
-        document.getElementById('approvalBody').innerHTML = html || "<tr><td colspan='4'>No pending requests</td></tr>";
+                <td><span class="status-badge ${u.approved ? 'approved' : 'pending'}">${u.approved ? 'Active' : 'Pending'}</span></td>
+                <td>
+                    ${!u.approved ? `<button class="btn-auth" onclick="approveUser(${i})">Approve</button>` : ''}
+                    <button class="btn-reg" style="color:red; border-color:red" onclick="deleteUser(${i})">Delete</button>
+                </td>
+            </tr>`;
+        }).join('');
+        document.getElementById('approvalBody').innerHTML = html || "<tr><td colspan='4'>No users found</td></tr>";
     }
 
-    function approveUser(name) {
-        const user = users.find(u => u.name === name);
-        user.approved = true;
-        localStorage.setItem('users', JSON.stringify(users));
+    function approveUser(index) {
+        users[index].approved = true;
+        localStorage.setItem('v_users', JSON.stringify(users));
         renderApprovals();
-        alert(name + " has been approved!");
+    }
+
+    function deleteUser(index) {
+        if(confirm("Are you sure you want to remove this user?")) {
+            users.splice(index, 1);
+            localStorage.setItem('v_users', JSON.stringify(users));
+            renderApprovals();
+        }
     }
 
     function handleLogout() { location.reload(); }
