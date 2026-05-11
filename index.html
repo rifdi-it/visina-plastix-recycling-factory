@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visina Plastix | Management Portal</title>
+    <title>Visina Plastix | Smart Waste Solutions</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        :root { --primary: #2d5a27; --accent: #f1c40f; --light: #f8f9fa; --dark: #1a3317; --danger: #e74c3c; }
+        :root { --primary: #2d5a27; --accent: #f1c40f; --light: #f8f9fa; --dark: #1a3317; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-        body { background: var(--light); }
         
         /* Navigation */
         nav { 
@@ -22,322 +21,317 @@
         .btn-auth { background: var(--primary); color: white; padding: 8px 18px; border-radius: 5px; cursor: pointer; border: none; font-weight: 600; }
         .btn-reg { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 6px 16px; border-radius: 5px; cursor: pointer; font-weight: 600; }
 
+        /* Public Hero */
+        .hero { 
+            height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1595273670150-db0a3d39074f?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover; background-position: center; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+
         /* Sections */
         section { padding: 60px 8%; }
         .section-title { text-align: center; margin-bottom: 40px; color: var(--primary); font-size: 2rem; }
+        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); }
 
-        /* Dashboard Styles */
-        .admin-section { background: white; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 5px solid var(--primary); }
-        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
-        .pending { background: #ffeaa7; color: #d6a011; }
-        .approved { background: #55efc4; color: #00b894; }
+        /* Public Price Table */
+        .price-box { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-weight: 500; }
+        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.1rem; }
 
-        /* Price Management */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        .price-input { width: 100px; padding: 5px; border: 1px solid #ddd; border-radius: 4px; }
-
-        /* Media Gallery */
-        .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
-        .media-item { height: 120px; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid #ddd; }
-        .media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; }
-        .del-media { position: absolute; top: 5px; right: 5px; background: var(--danger); color: white; border: none; cursor: pointer; padding: 2px 5px; border-radius: 3px; }
-
-        /* Utils */
-        .hidden { display: none !important; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; }
-        input, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; }
-        .whatsapp-card { background: #25D366; color: white; text-align: center; padding: 15px; border-radius: 8px; display: block; text-decoration: none; font-weight: bold; margin-top: 10px; }
-
-        /* Footer */
+        /* Footer & Contact */
         footer { background: var(--dark); color: white; padding: 40px 8%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .contact-info p { margin-bottom: 10px; opacity: 0.8; }
+
+        /* Modal / Dashboard */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; position: relative; }
+        
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; }
+        .hidden { display: none !important; }
+
+        /* User Dashboard Area */
+        #userDashboard { background: #f0f4f0; min-height: 100vh; padding-top: 30px; }
+        .whatsapp-card { background: #25D366; color: white; text-align: center; padding: 20px; border-radius: 10px; margin-top: 20px; text-decoration: none; display: block; font-weight: bold; }
+
+        /* Gallery Styles */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gallery-item { width: 100%; height: 200px; border-radius: 8px; object-fit: cover; border: 2px solid #ddd; }
+        .admin-panel { background: #fff; padding: 20px; border-radius: 10px; border: 2px dashed var(--primary); margin-bottom: 30px; }
     </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav id="publicNav">
     <div class="logo"><i class="fas fa-recycle"></i> VISINA PLASTIX</div>
     <div class="nav-right">
-        <div class="nav-links" id="publicLinks">
-            <a href="#mission">Vision</a>
-            <a href="#prices-sec">Prices</a>
+        <div class="nav-links">
+            <a href="#mission">Our Vision</a>
+            <a href="#gallery">Daily Work</a>
+            <a href="#prices">Price List</a>
             <a href="#contact">Contact</a>
         </div>
-        <div id="authButtons">
-            <button class="btn-reg" onclick="toggleModal('reg')">Register</button>
-            <button class="btn-auth" onclick="toggleModal('login')">Login</button>
-        </div>
-        <button id="logoutBtn" class="btn-reg hidden" onclick="handleLogout()">Logout</button>
+        <button class="btn-reg" onclick="openAuth('reg')">Register</button>
+        <button class="btn-auth" onclick="openAuth('login')">Login</button>
     </div>
 </nav>
 
-<!-- PUBLIC LANDING PAGE CONTENT -->
-<div id="publicPage">
-    <section class="hero" style="height: 50vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1595273670150-db0a3d39074f?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;">
+<div id="mainPublicContent">
+    <section class="hero">
         <h1>Building a Sustainable Future</h1>
-        <p>Advanced PP Scrap Processing & Pellets Manufacturing</p>
+        <p>Advanced PP Scrap Processing & Pellets Manufacturing in Sri Lanka</p>
+        <br>
+        <a href="#prices" class="btn-auth" style="text-decoration: none;">View Today's Prices</a>
     </section>
 
-    <section id="prices-sec">
-        <h2 class="section-title">Today's Market Rates</h2>
-        <div class="card" style="max-width: 800px; margin: auto;">
-            <table>
-                <thead>
-                    <tr><th>Material</th><th>Status</th><th>Price / KG</th></tr>
-                </thead>
-                <tbody id="publicPriceBody"></tbody>
-            </table>
+    <section id="mission" class="grid">
+        <div class="card">
+            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+            <p>To be the leading innovator in plastic recycling in South Asia, turning waste into high-quality raw materials for a circular economy.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+            <p>To provide reliable waste management solutions, empower scrap distributors, and supply premium PP pellets to global manufacturers.</p>
         </div>
     </section>
 
-    <section id="work-updates">
-        <h2 class="section-title">Daily Work Updates</h2>
-        <div class="media-grid" id="publicGallery"></div>
+    <!-- WORK GALLERY SECTION -->
+    <section id="gallery">
+        <h2 class="section-title">Daily Work Highlights</h2>
+        <div class="gallery-grid" id="publicGallery">
+            <!-- Photos/Videos will load here -->
+        </div>
+    </section>
+
+    <section id="prices" style="background: var(--light);">
+        <h2 class="section-title">Today's Market Rates</h2>
+        <div class="price-box">
+            <table>
+                <thead>
+                    <tr><th>Material Type</th><th>Status</th><th>Price / KG</th></tr>
+                </thead>
+                <tbody id="publicPriceTable">
+                    <!-- Dynamic Prices Load Here -->
+                </tbody>
+            </table>
+        </div>
+        <p style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #666;">*Prices updated daily at 09:00 AM based on market demand.</p>
     </section>
 
     <footer id="contact">
-        <div><h3>VISINA PLASTIX</h3><p>Narammala, Sri Lanka</p></div>
-        <div><h4>Contact</h4><p>+94 7X XXX XXXX</p><p>info@visinaplastix.com</p></div>
+        <div>
+            <h3>VISINA PLASTIX</h3>
+            <p>Narammala, Sri Lanka</p>
+            <p>Specialists in PP & Plastic Waste.</p>
+        </div>
+        <div class="contact-info">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-phone"></i> +94 7X XXX XXXX</p>
+            <p><i class="fas fa-envelope"></i> info@visinaplastix.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> No 123, Factory Road, Narammala.</p>
+        </div>
+        <div>
+            <h4>Business Hours</h4>
+            <p>Mon - Sat: 8:00 AM - 6:00 PM</p>
+            <p>Sunday: Closed</p>
+        </div>
     </footer>
 </div>
 
-<!-- MANAGEMENT DASHBOARD -->
-<div id="dashboardPage" class="hidden" style="padding: 40px 8%;">
-    <h2 id="welcomeText">Welcome</h2>
-    <hr style="margin: 20px 0;">
-
-    <div class="grid">
-        <!-- USER TOOLS -->
-        <div class="card" id="whatsappSection">
-            <h3><i class="fab fa-whatsapp"></i> Business Network</h3>
-            <p>Join our group for real-time trade alerts.</p>
-            <a href="#" id="waLink" class="whatsapp-card" target="_blank">JOIN WHATSAPP GROUP</a>
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeAuth()" style="position:absolute; right:20px; top:10px; cursor:pointer; font-size:24px;">&times;</span>
+        
+        <div id="loginForm">
+            <h2 style="text-align:center; color:var(--primary)">Staff & Client Login</h2>
+            <input type="text" id="logUser" placeholder="Username">
+            <input type="password" id="logPass" placeholder="Password">
+            <button class="btn-auth" style="width:100%" onclick="handleLogin()">Login</button>
         </div>
 
-        <!-- STAFF & ADMIN TOOLS: PRICE UPDATE -->
-        <div class="card hidden" id="priceEditor">
-            <h3><i class="fas fa-edit"></i> Update Daily Prices</h3>
-            <table style="font-size: 13px;">
-                <tbody id="adminPriceTable"></tbody>
-            </table>
-            <button class="btn-auth" style="width: 100%; margin-top: 10px;" onclick="savePrices()">Save Prices</button>
+        <div id="regForm" class="hidden">
+            <h2 style="text-align:center; color:var(--primary)">Create Account</h2>
+            <input type="text" id="regName" placeholder="Business / Personal Name">
+            <input type="password" id="regPass" placeholder="Choose Password">
+            <select id="regRole">
+                <option value="distributor">PP Scrap Distributor</option>
+                <option value="buyer">Pellets Buyer</option>
+                <option value="staff">Factory Staff</option>
+            </select>
+            <button class="btn-auth" style="width:100%" onclick="handleReg()">Register Now</button>
+            <p style="font-size:11px; margin-top:10px; text-align:center">Wait for Admin approval to access the portal.</p>
         </div>
-
-        <!-- STAFF & ADMIN TOOLS: MEDIA UPLOAD -->
-        <div class="card hidden" id="mediaManager">
-            <h3><i class="fas fa-camera"></i> Daily Progress</h3>
-            <input type="file" id="mediaInput" accept="image/*,video/*">
-            <button class="btn-auth" style="width: 100%;" onclick="uploadMedia()">Upload Photo/Video</button>
-            <div class="media-grid" id="adminGallery"></div>
-        </div>
-    </div>
-
-    <!-- ADMIN ONLY: USER APPROVAL -->
-    <div class="admin-section hidden" id="adminApproval">
-        <h3><i class="fas fa-users-cog"></i> User Management</h3>
-        <table id="approvalTable">
-            <thead>
-                <tr><th>User</th><th>Role</th><th>Status</th><th>Action</th></tr>
-            </thead>
-            <tbody id="approvalBody"></tbody>
-        </table>
     </div>
 </div>
 
-<!-- AUTH MODAL -->
-<div id="authModal" class="modal">
-    <div class="modal-content">
-        <div id="loginView">
-            <h2 style="text-align: center;">Login</h2>
-            <input type="text" id="logUser" placeholder="Username">
-            <input type="password" id="logPass" placeholder="Password">
-            <button class="btn-auth" style="width:100%" onclick="handleLogin()">Sign In</button>
+<div id="dashboard" class="hidden" style="padding: 40px 8%; background: #f4f7f4; min-height: 100vh;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+        <h2>Welcome, <span id="userNameDisplay"></span>!</h2>
+        <button class="btn-reg" onclick="location.reload()">Logout</button>
+    </div>
+
+    <!-- ADMIN CONTROL PANEL (Visible only to admin) -->
+    <div id="adminPanel" class="admin-panel hidden">
+        <h3><i class="fas fa-tools"></i> Admin Control Panel</h3>
+        <hr style="margin:15px 0">
+        <div class="grid">
+            <div>
+                <h4>Update Daily Prices</h4>
+                <input type="text" id="pricePP" placeholder="PP Scrap Price (e.g. 145.00)">
+                <input type="text" id="priceNat" placeholder="Natural Pellets Price (e.g. 580.00)">
+                <input type="text" id="priceBlk" placeholder="Black Pellets Price (e.g. 420.00)">
+                <button class="btn-auth" onclick="updatePrices()">Update Live Website</button>
+            </div>
+            <div>
+                <h4>Add Work Photo/Video</h4>
+                <input type="text" id="mediaUrl" placeholder="Image/Video URL (Unsplash/Direct link)">
+                <button class="btn-auth" onclick="addMedia()">Post to Gallery</button>
+                <button class="btn-reg" style="margin-top:10px" onclick="clearMedia()">Clear Gallery</button>
+            </div>
         </div>
-        <div id="regView" class="hidden">
-            <h2 style="text-align: center;">Join Visina Plastix</h2>
-            <input type="text" id="regUser" placeholder="Full Name">
-            <input type="password" id="regPass" placeholder="Password">
-            <select id="regRole">
-                <option value="people_distributor">PP Scrap Distributor</option>
-                <option value="people_buyer">PP Pellets Buyer</option>
-                <option value="staff">Factory Staff</option>
-            </select>
-            <button class="btn-auth" style="width:100%" onclick="handleRegister()">Register Request</button>
+    </div>
+
+    <div class="grid">
+        <div class="card" id="whatsappCard">
+            <h3><i class="fab fa-whatsapp"></i> Direct Connection</h3>
+            <p>Join our exclusive network to get instant trade updates.</p>
+            <a href="#" id="waLink" class="whatsapp-card" target="_blank">JOIN OUR WHATSAPP GROUP</a>
         </div>
-        <button onclick="toggleModal()" style="width: 100%; background: none; border: none; margin-top: 10px; cursor: pointer;">Cancel</button>
+
+        <div class="card">
+            <h3><i class="fas fa-file-invoice"></i> Orders & History</h3>
+            <p>Your trade history will appear here once you start transactions.</p>
+        </div>
     </div>
 </div>
 
 <script>
-    // --- DATABASE MOCKUP ---
-    let users = JSON.parse(localStorage.getItem('v_users')) || [
-        { name: "Admin", pass: "123", role: "admin", approved: true }
+    // Initial Data Setup
+    const defaultPrices = [
+        { name: "PP Scrap (Mixed)", status: "Buying", price: "145.00", color: "green" },
+        { name: "PP Pellets (Natural)", status: "Selling", price: "580.00", color: "blue" },
+        { name: "PP Pellets (Black)", status: "Selling", price: "420.00", color: "blue" }
     ];
-    let prices = JSON.parse(localStorage.getItem('v_prices')) || [
-        { item: "PP Scrap", status: "Buying", val: "145" },
-        { item: "Natural Pellets", status: "Selling", val: "580" }
-    ];
-    let gallery = JSON.parse(localStorage.getItem('v_gallery')) || [];
 
-    // --- CORE LOGIC ---
-    function init() {
-        renderPublicPrices();
-        renderPublicGallery();
+    let livePrices = JSON.parse(localStorage.getItem('livePrices')) || defaultPrices;
+    let liveMedia = JSON.parse(localStorage.getItem('liveMedia')) || [
+        "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=500"
+    ];
+
+    const users = JSON.parse(localStorage.getItem('users')) || [
+        { name: "Admin", pass: "admin123", role: "admin", approved: true }
+    ];
+
+    // Load Data on Startup
+    window.onload = function() {
+        renderPrices();
+        renderGallery();
+    };
+
+    function renderPrices() {
+        const table = document.getElementById('publicPriceTable');
+        table.innerHTML = livePrices.map(p => `
+            <tr>
+                <td>${p.name}</td>
+                <td><span style="color:${p.color}">● ${p.status}</span></td>
+                <td class="price-tag">Rs. ${p.price}</td>
+            </tr>
+        `).join('');
     }
 
-    function toggleModal(mode) {
-        const modal = document.getElementById('authModal');
-        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-        document.getElementById('loginView').classList.toggle('hidden', mode !== 'login');
-        document.getElementById('regView').classList.toggle('hidden', mode !== 'reg');
+    function renderGallery() {
+        const gallery = document.getElementById('publicGallery');
+        gallery.innerHTML = liveMedia.map(url => `
+            <img src="${url}" class="gallery-item" alt="Work Photo">
+        `).join('');
     }
 
-    function handleRegister() {
-        const name = document.getElementById('regUser').value;
+    // Admin Functions
+    function updatePrices() {
+        const p1 = document.getElementById('pricePP').value;
+        const p2 = document.getElementById('priceNat').value;
+        const p3 = document.getElementById('priceBlk').value;
+
+        if(p1) livePrices[0].price = p1;
+        if(p2) livePrices[1].price = p2;
+        if(p3) livePrices[2].price = p3;
+
+        localStorage.setItem('livePrices', JSON.stringify(livePrices));
+        renderPrices();
+        alert("Prices updated on the website!");
+    }
+
+    function addMedia() {
+        const url = document.getElementById('mediaUrl').value;
+        if(!url) return alert("Enter a valid URL");
+        liveMedia.unshift(url);
+        localStorage.setItem('liveMedia', JSON.stringify(liveMedia));
+        renderGallery();
+        document.getElementById('mediaUrl').value = "";
+        alert("Photo added to gallery!");
+    }
+
+    function clearMedia() {
+        liveMedia = [];
+        localStorage.setItem('liveMedia', JSON.stringify(liveMedia));
+        renderGallery();
+    }
+
+    // Auth Functions
+    function openAuth(type) {
+        document.getElementById('authModal').style.display = 'flex';
+        document.getElementById('loginForm').classList.toggle('hidden', type === 'reg');
+        document.getElementById('regForm').classList.toggle('hidden', type === 'login');
+    }
+
+    function closeAuth() { document.getElementById('authModal').style.display = 'none'; }
+
+    function handleReg() {
+        const name = document.getElementById('regName').value;
         const pass = document.getElementById('regPass').value;
         const role = document.getElementById('regRole').value;
-        if(!name || !pass) return alert("Fill all fields");
-
+        if(!name || !pass) return alert("Please fill all fields");
         users.push({ name, pass, role, approved: false });
-        localStorage.setItem('v_users', JSON.stringify(users));
-        alert("Registration sent! Wait for Admin approval.");
-        toggleModal();
+        localStorage.setItem('users', JSON.stringify(users));
+        alert("Registration successful! Please contact Admin for approval.");
+        closeAuth();
     }
 
     function handleLogin() {
         const u = document.getElementById('logUser').value;
         const p = document.getElementById('logPass').value;
         const user = users.find(x => x.name === u && x.pass === p);
+        
+        if(!user) return alert("User not found");
+        if(!user.approved) return alert("Your account is pending Admin approval!");
 
-        if(!user) return alert("Invalid credentials");
-        if(!user.approved) return alert("Account pending Admin approval!");
+        document.getElementById('mainPublicContent').classList.add('hidden');
+        document.getElementById('publicNav').classList.add('hidden');
+        document.getElementById('authModal').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('userNameDisplay').innerText = user.name;
 
-        loadDashboard(user);
-    }
-
-    function loadDashboard(user) {
-        document.getElementById('publicPage').classList.add('hidden');
-        document.getElementById('dashboardPage').classList.remove('hidden');
-        document.getElementById('authButtons').classList.add('hidden');
-        document.getElementById('logoutBtn').classList.remove('hidden');
-        document.getElementById('welcomeText').innerText = `Welcome, ${user.name} (${user.role})`;
-        toggleModal();
-
-        // Access Control
-        if(user.role === 'admin' || user.role === 'staff') {
-            document.getElementById('priceEditor').classList.remove('hidden');
-            document.getElementById('mediaManager').classList.remove('hidden');
-            renderAdminPrices();
-            renderAdminGallery();
-        }
-
+        // Show Admin Panel if user is admin
         if(user.role === 'admin') {
-            document.getElementById('adminApproval').classList.remove('hidden');
-            renderApprovals();
+            document.getElementById('adminPanel').classList.remove('hidden');
         }
 
-        if(user.role.startsWith('people')) {
-            document.getElementById('whatsappSection').classList.remove('hidden');
-            const link = user.role.includes('buyer') ? 'BuyerGroupLink' : 'DistributorGroupLink';
-            document.getElementById('waLink').href = "https://chat.whatsapp.com/" + link;
+        // WhatsApp Logic
+        const waLink = document.getElementById('waLink');
+        if(user.role === 'distributor') {
+            waLink.innerText = "JOIN PP DISTRIBUTOR GROUP";
+            waLink.href = "https://chat.whatsapp.com/ExampleDistributorGroup";
+        } else if(user.role === 'buyer') {
+            waLink.innerText = "JOIN PELLETS BUYER GROUP";
+            waLink.href = "https://chat.whatsapp.com/ExampleBuyerGroup";
+        } else if(user.role !== 'admin') {
+            document.getElementById('whatsappCard').classList.add('hidden');
         }
     }
-
-    // --- PRICE MANAGEMENT ---
-    function renderPublicPrices() {
-        const html = prices.map(p => `<tr><td>${p.item}</td><td>${p.status}</td><td class="price-input" style="border:none; color:var(--primary); font-weight:bold;">Rs. ${p.val}</td></tr>`).join('');
-        document.getElementById('publicPriceBody').innerHTML = html;
-    }
-
-    function renderAdminPrices() {
-        const html = prices.map((p, i) => `<tr><td>${p.item}</td><td><input class="price-input" id="p-${i}" value="${p.val}"></td></tr>`).join('');
-        document.getElementById('adminPriceTable').innerHTML = html;
-    }
-
-    function savePrices() {
-        prices.forEach((p, i) => {
-            p.val = document.getElementById(`p-${i}`).value;
-        });
-        localStorage.setItem('v_prices', JSON.stringify(prices));
-        renderPublicPrices();
-        alert("Prices updated for everyone!");
-    }
-
-    // --- MEDIA MANAGEMENT ---
-    function uploadMedia() {
-        const file = document.getElementById('mediaInput').files[0];
-        if(!file) return;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            gallery.push({ src: e.target.result, type: file.type });
-            localStorage.setItem('v_gallery', JSON.stringify(gallery));
-            renderAdminGallery();
-            renderPublicGallery();
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function renderAdminGallery() {
-        const html = gallery.map((m, i) => `
-            <div class="media-item">
-                <button class="del-media" onclick="delMedia(${i})">&times;</button>
-                ${m.type.includes('video') ? `<video src="${m.src}"></video>` : `<img src="${m.src}">`}
-            </div>
-        `).join('');
-        document.getElementById('adminGallery').innerHTML = html;
-    }
-
-    function renderPublicGallery() {
-        const html = gallery.map(m => `<div class="media-item">${m.type.includes('video') ? `<video src="${m.src}" controls></video>` : `<img src="${m.src}">`}</div>`).join('');
-        document.getElementById('publicGallery').innerHTML = html || "<p style='grid-column: 1/-1; text-align:center;'>No work updates yet.</p>";
-    }
-
-    function delMedia(i) {
-        gallery.splice(i, 1);
-        localStorage.setItem('v_gallery', JSON.stringify(gallery));
-        renderAdminGallery();
-        renderPublicGallery();
-    }
-
-    // --- ADMIN APPROVALS ---
-    function renderApprovals() {
-        const html = users.map((u, i) => {
-            if(u.role === 'admin') return '';
-            return `
-            <tr>
-                <td>${u.name}</td>
-                <td>${u.role}</td>
-                <td><span class="status-badge ${u.approved ? 'approved' : 'pending'}">${u.approved ? 'Active' : 'Pending'}</span></td>
-                <td>
-                    ${!u.approved ? `<button class="btn-auth" onclick="approveUser(${i})">Approve</button>` : ''}
-                    <button class="btn-reg" style="color:red; border-color:red" onclick="deleteUser(${i})">Delete</button>
-                </td>
-            </tr>`;
-        }).join('');
-        document.getElementById('approvalBody').innerHTML = html || "<tr><td colspan='4'>No users found</td></tr>";
-    }
-
-    function approveUser(index) {
-        users[index].approved = true;
-        localStorage.setItem('v_users', JSON.stringify(users));
-        renderApprovals();
-    }
-
-    function deleteUser(index) {
-        if(confirm("Are you sure you want to remove this user?")) {
-            users.splice(index, 1);
-            localStorage.setItem('v_users', JSON.stringify(users));
-            renderApprovals();
-        }
-    }
-
-    function handleLogout() { location.reload(); }
-
-    init();
 </script>
 
 </body>
